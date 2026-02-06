@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aditya's Portfolio</title>
+    <link rel="stylesheet" href="theme/theme.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: pan-x pan-y;
+        }
+
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #0f172a;
+            color: #ccd6f6;
+            min-height: 100vh;
+            padding: 40px 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-theme {
+            background: #f8f9fa;
+            color: #0f172a;
+        }
+
+        .contact-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #112240;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 1px solid rgba(136, 146, 176, 0.15);
+            transition: all 0.3s;
+        }
+
+        body.light-theme .contact-container {
+            background: #ffffff;
+            border-color: rgba(15, 23, 42, 0.1);
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 0.6fr 1.4fr;
+            gap: 0;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        body.light-theme .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-form {
+            padding: 50px 40px;
+            background: #0f172a;
+            transition: all 0.3s;
+        }
+
+        body.light-theme .contact-form {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: white;
+            letter-spacing: -0.3px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 35px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .contact-form h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #e2e8f0;
+            transition: color 0.3s;
+            letter-spacing: -0.3px;
+        }
+
+        .contact-form > p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        body.light-theme .contact-form h2 {
+            color: #0f172a;
+        }
+
+        body.light-theme .contact-form > p {
+            color: #6b7280;
+        }
+
+        .info-item {
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .info-content h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            opacity: 0.95;
+        }
+
+        .info-content p {
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+            letter-spacing: 0.3px;
+        }
+
+        body.light-theme .form-group label {
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+            min-height: 44px;
+            background: #0f2847;
+            color: #e2e8f0;
+            letter-spacing: 0.2px;
+        }
+
+        body.light-theme .form-group input,
+        body.light-theme .form-group textarea {
+            background: #ffffff;
+            border: none !important;
+            color: #111827;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #8892b0;
+        }
+
+        body.light-theme .form-group input::placeholder,
+        body.light-theme .form-group textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        body.light-theme .form-group input:focus,
+        body.light-theme .form-group textarea:focus {
+            border-color: #000000 !important;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            margin-top: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(37, 99, 235, 0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid rgba(37, 99, 235, 0.25);
+            padding: 0;
+        }
+
+        .social-icon:hover {
+            background: rgba(37, 99, 235, 0.25);
+            border-color: rgba(37, 99, 235, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+        }
+
+        body.light-theme .social-icon {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-theme .social-icon:hover {
+            background: rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 0, 0, 0.35);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+
+        body.light-theme .social-icon:hover {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.2) 100%);
+            border-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 13px;
+            border-left: 4px solid #059669;
+        }
+
+        .error-message {
+            display: none;
+            background: #ef4444;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 13px;
+            border-left: 4px solid #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .contact-container {
+                margin: 80px 16px 40px;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr !important;
+            }
+
+            .contact-info {
+                padding: 28px 20px;
+                order: 2;
+            }
+
+            .contact-form {
+                padding: 28px 20px;
+                order: 1;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            .contact-form h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .contact-form > p {
+                font-size: 12px;
+                margin-bottom: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            .form-group label {
+                font-size: 11px;
+                margin-bottom: 6px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 12px;
+                padding: 8px 10px;
+                min-height: 40px;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
+            .intro-section {
+                padding: 28px 20px;
+                flex: none !important;
+            }
+
+            .intro-section h1 {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            .intro-section p {
+                font-size: 12px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+            }
+
+            .intro-section p[style*="font-size: 16px"] {
+                font-size: 12px !important;
+                margin-top: 16px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .top-section {
+                grid-template-columns: 1fr !important;
+                margin: 80px 16px 40px !important;
+                border-radius: 8px;
+            }
+
+            .top-section .contact-form {
+                padding: 28px 20px;
+                border-left: none !important;
+                border-top: 1px solid rgba(79, 126, 187, 0.2);
+            }
+
+            .social-links {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .social-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .social-icon img {
+                width: 26px !important;
+                height: 26px !important;
+            }
+
+            .info-item {
+                margin-bottom: 18px;
+                gap: 10px;
+            }
+
+            .info-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                flex-shrink: 0;
+            }
+
+            .info-content h3 {
+                font-size: 11px;
+                margin-bottom: 2px;
+            }
+
+            .info-content p {
+                font-size: 11px;
+                opacity: 0.75;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 8px 16px;
+                font-size: 12px;
+                margin-top: 8px;
+            }
+        }
+
+        .intro-section {
+            max-width: none;
+            margin: 0;
+            padding: 50px 40px;
+            color: #ccd6f6;
+            text-align: left;
+            flex: 0.6;
+            background: linear-gradient(135deg, rgba(79, 126, 187, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
+        }
+
+        body.light-theme .intro-section {
+            color: #1e293b;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.03) 100%);
+        }
+
+        .intro-section h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: -0.3px;
+        }
+
+        .intro-section p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .intro-section .highlight {
+            font-weight: 600;
+        }
+
+        .top-section {
+            display: grid;
+            grid-template-columns: 0.6fr 1.4fr;
+            gap: 0;
+            max-width: 1200px;
+            margin: 60px auto 40px;
+            background: #0f1927;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(79, 126, 187, 0.2);
+            overflow: hidden;
+            border: 2px solid rgba(37, 99, 235, 0.25);
+        }
+
+        body.light-theme .top-section {
+            background: #ffffff;
+            border: 2px solid #000000 !important;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1), 0 0 0 1px rgba(37, 99, 235, 0.15);
+        }
+
+        .top-section .contact-form {
+            padding: 50px 40px;
+            background: #0a1428;
+            border-left: 1px solid rgba(79, 126, 187, 0.15);
+        }
+
+        body.light-theme .top-section .contact-form {
+            background: #f9fafb;
+            border-left: 2px solid #000000 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+    
+    <!-- Top Section with Intro and Form -->
+    <div class="top-section">
+        <div class="intro-section">
+            <h1>Contact Me</h1>
+            <p>I am available on almost every social media. You can message me, I will reply within <span class="highlight">24 hours</span>.</p>
+            <p>I can help you with <span class="highlight">ML, AI, React, Android, Cloud and Opensource Development</span>.</p>
+
+            <p style="font-size: 16px; margin-top: 28px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.95; color: inherit;">Social </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/adityahonrao10/" class="social-icon" title="LinkedIn" target="_blank"><img src="images/social/liknkdin.png" alt="LinkedIn" style="width: 40px; height: 40px;"></a>
+                <a href="https://github.com/honraoaditya10-wq" class="social-icon" title="GitHub" target="_blank"><img src="images/social/github.png" alt="Github" style="width: 50px; height: 50px;"></a>
+                <a href="https://www.instagram.com/_aditya_honrao_/" class="social-icon" title="Instagram" target="_blank"><img src="images/social/instagram.png" alt="Instagram" style="width: 40px; height: 40px;"></a>
+                <a href="https://x.com/AHonrao76339" class="social-icon" title="Twitter" target="_blank"><img src="images/social/twitter.png" alt="Twitter" style="width: 40px; height: 40px;"></a>
+            </div>
+            <p style="font-size: 16px; margin-top: 28px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.95; color: inherit;">Coding Platforms</p>
+            <div class="social-links">
+                <a href="https://leetcode.com/u/adityahonrao10/" class="social-icon" title="LeetCode" target="_blank"><img src="images/coding/LeetCode_logo_black.png" alt="LeetCode" style="width: 40px; height: 40px;"></a>
+                <a href="https://www.hackerrank.com/profile/honraoaditya10" class="social-icon" title="HackerRank" target="_blank"><img src="images/coding/hackerrank.png" alt="HackerRank" style="width: 40px; height: 40px;"></a>
+                <a href="https://www.codechef.com/users/adityahonrao10" class="social-icon" title="CodeChef" target="_blank"><img src="images/coding/codechef.jpg" alt="CodeChef" style="width: 40px; height: 40px;"></a>
+            </div>
+            <br>
+            <div style="margin-top: 18px;">
+                <a href="#" class="resume-btn" style="display: inline-block; padding: 10px 28px; background: #64ffda; color: #0a192f; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 16px; box-shadow: 0 2px 8px rgba(100,255,218,0.08); transition: background 0.3s;"> 💫See my Resume</a>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Send me a Message</h2>
+            <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+            
+            <div class="success-message" id="successMsg">✓ Message sent successfully! I'll get back to you soon.</div>
+            <div class="error-message" id="errorMsg">✗ Error sending message. Please try again.</div>
+
+            <form id="contactForm" action="https://formspree.io/f/mykdgwbp" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Aditya Honrao">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="honraoaditya10@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" required placeholder="How can I help you?">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+   
+ 
+    <script src="theme/theme.js"></script>
+    <script>
+        // Prevent zoom via keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent zoom via mouse wheel
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent pinch-to-zoom on touch devices
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+        // Handle Formspree form submission with AJAX
+        const form = document.getElementById('contactForm');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Hide messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // Get submit button
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Get form data
+            const formData = new FormData(form);
+            
+            // Send to Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    successMsg.style.display = 'block';
+                    form.reset();
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 5000);
+                } else {
+                    return response.json().then(data => {
+                        throw new Error(data.error || 'Form submission failed');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMsg.style.display = 'block';
+                
+                // Hide error message after 5 seconds
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 5000);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            });
+        });
+        
+        fetch('theme/navbar.html').then(r => r.text()).then(html => {
+            document.getElementById('navbar-root').innerHTML = html;
+            const contactContainer = document.querySelector('.contact-container');
+            if (contactContainer) contactContainer.style.marginTop = '120px';
+        });
+        
+        fetch('theme/copyright.html').then(r => r.text()).then(html => {
+            document.getElementById('copyright-root').innerHTML = html;
+        });
+    </script>
+    <div id="copyright-root"></div>
+</body>
+</html>

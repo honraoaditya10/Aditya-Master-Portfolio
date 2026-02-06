@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aditya's Portfulio</title>
+    <link rel="stylesheet" href="../theme/theme.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: pan-x pan-y;
+        }
+        
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+        
+        body {
+            background: #0a192f;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            align-items: center;
+        }
+
+        .code-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .code-line {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 13px;
+            opacity: 0.4;
+            animation: slideCode linear infinite;
+            left: 0;
+        }
+
+        @keyframes slideCode {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 10;
+            background: rgba(16, 30, 48, 0.9);
+            padding: 50px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            width: 420px;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-container h2 {
+            color: #64ffda;
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 2rem;
+            text-shadow: none;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #8892b0;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(10, 25, 47, 0.8);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            color: #ccd6f6;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            background: rgba(10, 25, 47, 0.95);
+            border-color: #64ffda;
+            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #4a5568;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: #64ffda;
+            border: 2px solid #64ffda;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .login-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 4px 20px rgba(100, 255, 218, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #8892b0;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ccd6f6;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .signup-link p {
+            color: #8892b0;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .signup-link a {
+            color: #64ffda;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .signup-link a:hover {
+            color: #8fe6c7;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow: auto;
+                padding: 24px 16px;
+                align-items: flex-start;
+            }
+
+            .login-container {
+                width: 100%;
+                max-width: 420px;
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="code-container" id="codeContainer"></div>
+
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <form id="loginForm">
+            <button type="button" class="google-btn" id="googleBtn">
+                <span class="google-icon">
+                    <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none" fill-rule="evenodd">
+                            <path d="M17.64 9.204c0-.638-.057-1.252-.164-1.841H9.128v3.489h4.754c-.206 1.125-.845 2.079-1.8 2.715v2.218h3.042c1.779-1.638 2.796-4.043 2.796-6.584z" fill="#4285F4"/>
+                            <path d="M9.128 18c2.54 0 4.67-.84 6.234-2.276l-3.042-2.218c-.845.59-1.927.937-3.192.937-2.457 0-4.535-1.657-5.285-3.887H2.701v2.288c1.523 2.935 4.611 4.912 8.427 4.912z" fill="#34A853"/>
+                            <path d="M3.843 10.534a5.537 5.537 0 0 1-.3-1.788c0-.619.107-1.22.307-1.788V4.67H2.701a9.449 9.449 0 0 0 0 8.666h1.142z" fill="#FBBC05"/>
+                            <path d="M9.128 3.682a5.128 5.128 0 0 1 3.605 1.318l2.702-2.702a9.339 9.339 0 0 0-8.307-1.013l-1.142 2.234z" fill="#EA4335"/>
+                        </g>
+                    </svg>
+                </span>
+                Continue with Google
+            </button>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+        <div class="signup-link">
+            <a href="sighup.html">Don't have an account?</a>
+        </div>
+    </div>
+
+    <script src="../theme.js"></script>
+    <script type="module">
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyARIEv42TeVSWw9PTXHMmk_Hy8U7sNbMWU",
+    authDomain: "my-portfulio-97656.firebaseapp.com",
+    projectId: "my-portfulio-97656",
+    storageBucket: "my-portfulio-97656.firebasestorage.app",
+    messagingSenderId: "1002345381450",
+    appId: "1:1002345381450:web:c7c7641842b3fc1341b0b3",
+    measurementId: "G-Z076G3MFH6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Wait for DOM and theme to be ready before starting animation
+document.addEventListener('DOMContentLoaded', function() {
+    // Small delay to ensure theme.js is loaded
+    setTimeout(initBackgroundAnimation, 100);
+});
+
+function initBackgroundAnimation() {
+// Animated code background
+const codeSnippets = [
+    'const data = await fetch("/api/users");',
+    'function calculate(x, y) { return x * y + Math.random(); }',
+    'if (user.authenticated) { redirect("/dashboard"); }',
+    'class Component extends React.Component { render() {...} }',
+    'SELECT * FROM users WHERE active = true;',
+    'for (let i = 0; i < array.length; i++) { process(array[i]); }',
+    'import { useState, useEffect } from "react";',
+    'const result = array.map(item => item.value * 2);',
+    'try { await updateDatabase(data); } catch(err) { log(err); }',
+    'export default function App() { return <div>Hello</div>; }',
+    'while (queue.length > 0) { processNext(queue.shift()); }',
+    'const style = { color: "#0f0", fontSize: "16px" };',
+    'git commit -m "feat: add new feature"',
+    'npm install express mongoose dotenv',
+    'docker run -d -p 8080:80 nginx:latest',
+    'async function loadData() { const res = await api.get(); }',
+    'let config = JSON.parse(localStorage.getItem("config"));',
+    'response.status(200).json({ success: true, data });',
+    'const token = jwt.sign(payload, secret, { expiresIn: "1h" });',
+    'db.collection.find({ status: "active" }).toArray();'
+];
+
+const container = document.getElementById('codeContainer');
+
+function getCurrentColors() {
+    if (window.getCurrentThemeColors) {
+        return window.getCurrentThemeColors();
+    } else if (window.themeConfig) {
+        return document.body.classList.contains('light-theme') ? window.themeConfig.lightColors : window.themeConfig.darkColors;
+    } else {
+        // Fallback colors if themeConfig is not loaded yet
+        return ['#8892b0', '#a8b2d1', '#ccd6f6', '#98a5c0', '#7889a8'];
+    }
+}
+
+function createCodeLine() {
+            const line = document.createElement('div');
+            line.className = 'code-line';
+            line.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+            const currentColors = getCurrentColors();
+            line.style.color = currentColors[Math.floor(Math.random() * currentColors.length)];
+            line.style.top = Math.random() * 100 + 'vh';
+
+            const duration = (15 + Math.random() * 10);
+            line.style.animationDuration = duration + 's';
+
+            container.appendChild(line);
+
+            setTimeout(() => {
+                line.remove();
+            }, duration * 1000);
+        }
+
+
+
+// Continue adding new lines
+setInterval(createCodeLine, 600);
+
+// Create initial lines after a short delay to ensure proper loading
+setTimeout(() => {
+    // Create initial code lines to fill the screen immediately
+    for (let i = 0; i < 35; i++) {
+        const line = document.createElement('div');
+        line.className = 'code-line';
+        line.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+        const currentColors = getCurrentColors();
+        line.style.color = currentColors[Math.floor(Math.random() * currentColors.length)];
+        line.style.top = Math.random() * 100 + 'vh';
+
+        const duration = (12 + Math.random() * 8);
+        const progress = Math.random();
+
+        line.style.animationDuration = duration + 's';
+        line.style.animationDelay = `-${duration * progress}s`;
+
+        container.appendChild(line);
+    }
+}, 500);
+
+// Email/Password login
+const loginForm = document.querySelector('form'); // assuming only one form on the page
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;    // Make sure your input's id is 'email'
+    const password = document.getElementById('password').value; // Make sure your input's id is 'password'
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+            alert("Login successful!");
+            window.location.href = "../home.html";
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+});
+
+// Google Sign-In
+document.getElementById('googleBtn').addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then(result => {
+            alert("Google login successful!");
+            window.location.href = "../home.html";
+        })
+        .catch(error => alert(error.message));
+});
+
+// Theme Change Listener
+window.addEventListener('themeChanged', (e) => {
+    const isLight = e.detail.isLight;
+    const newColors = isLight ? window.themeConfig.lightColors : window.themeConfig.darkColors;
+    document.querySelectorAll('.code-line').forEach(line => {
+        line.style.color = newColors[Math.floor(Math.random() * newColors.length)];
+    });
+});
+
+} // Close initBackgroundAnimation function
+    </script>
+    <div id="copyright-root"></div>
+    <script>
+        // Prevent zoom via keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent zoom via mouse wheel
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent pinch-to-zoom on touch devices
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+    
+    </script>
+</body>
+</html>

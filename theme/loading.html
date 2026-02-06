@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya's Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-color: #0a192f;
+}
+
+/* ---------- LIGHT THEME ---------- */
+body.light-theme {
+  background-color: #ffffff;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 100%;
+  animation: grow 5.5s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* light theme screen */
+body.light-theme .screen-container {
+  background-color: transparent;
+}
+
+.splash-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 40%;
+}
+
+@keyframes grow {
+  0% { transform: scale(0); }
+  10% { transform: scale(1); border-radius: 0%; }
+  90% { transform: scale(1); border-radius: 0%; }
+  100% { transform: scale(0); border-radius: 100%; }
+}
+
+@keyframes dash {
+  from { stroke-dashoffset: 800; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.myHexagon {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: dash 4s linear forwards 0.5s;
+}
+
+.letter {
+  opacity: 0;
+  animation: fadein 2s linear forwards 2.5s;
+}
+
+/* Signature Animation Styles */
+.container {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.main {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-top: 60vh;
+}
+
+.sign {
+  overflow: visible;
+}
+
+.sign > *:nth-child(1) {
+  fill: transparent;
+  stroke-width: 0.3;
+  stroke: white;
+  stroke-dasharray: 765;
+  stroke-dashoffset: 765;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: fillit 2s linear 2s forwards;
+}
+
+.sign > *:nth-child(2) {
+  fill: transparent;
+  stroke-width: 0.3;
+  stroke: white;
+  stroke-dasharray: 154;
+  stroke-dashoffset: 154;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: fillit1 2s linear forwards;
+}
+
+@keyframes fillit {
+  0% {
+    stroke-dashoffset: 765;
+  }
+  90% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: white;
+  }
+}
+
+@keyframes fillit1 {
+  0% {
+    stroke-dashoffset: 154;
+  }
+  90% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: white;
+  }
+}
+
+/* Light theme text color */
+body.light-theme .sign > text {
+  fill: #000000;
+  stroke: #000000;
+}
+
+body.light-theme .sign > *:nth-child(1) {
+  stroke: #000000;
+}
+
+body.light-theme .sign > *:nth-child(2) {
+  stroke: #000000;
+}
+
+body.light-theme .sign > *:nth-child(1) {
+  animation: fillit-light 2s linear 2s forwards;
+}
+
+body.light-theme .sign > *:nth-child(2) {
+  animation: fillit1-light 2s linear forwards;
+}
+
+@media (max-width: 480px) {
+  .main {
+    width: 160px;
+    height: 160px;
+    margin-top: 58vh;
+  }
+
+  .sign .signature-text {
+    font-size: 36px;
+  }
+}
+
+@keyframes fillit-light {
+  0% {
+    stroke-dashoffset: 765;
+  }
+  90% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: #000000;
+  }
+}
+
+@keyframes fillit1-light {
+  0% {
+    stroke-dashoffset: 154;
+  }
+  90% {
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: #000000;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+  <div class="splash-container">
+    <div class="container">
+      <div class="main">
+        <svg class="sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.41 91.26">
+          <path d="M78.48,90.69a343.68,343.68,0,0,0,2-69.95q-.74-9.94-2-19.83c-.09-.63-1.06-1.15-1.4-.38a221.66,221.66,0,0,1-22.46,39q-3.87,5.37-8,10.52c-.35.43-.19,1.37.53,1.28l32.05-4c10.51-1.32,21-2.89,31.57-3.85a67.34,67.34,0,0,1,17.77.37V42.41A401.49,401.49,0,0,1,82.07,50.9C66.5,52.82,50.84,54,35.21,55.36L21.93,56.5a17.24,17.24,0,0,0-3.06.26c-.72.2-1.36,1-1.93,1.49l-5.28,4.48,1.18.91c1.26-2-1.43-3-3-3a4.51,4.51,0,0,0-3,1.25c-1.13,1-2.39,2.59-4.06,2.32l.55.72A24.46,24.46,0,0,0,1.51,54.8c-.37-.88-1.82-.49-1.45.4a23.4,23.4,0,0,1,1.78,9.74.75.75,0,0,0,.55.72c2.1.35,3.55-.9,5-2.23a3.61,3.61,0,0,1,2.42-1.28c.38,0,2.12.1,1.73.73s.55,1.43,1.17.91L17.24,60a11,11,0,0,1,1.89-1.6,10.25,10.25,0,0,1,3.29-.4l11.8-1c7.73-.66,15.46-1.31,23.18-2,15.47-1.37,30.92-3,46.22-5.76q12.7-2.25,25.26-5.33c.68-.17.74-1.31,0-1.44-10.38-1.85-20.9-.19-31.25,1.1l-32.3,4.05L47.09,49.84l.53,1.28A226.28,226.28,0,0,0,72.76,12.91q3-5.72,5.6-11.62L77,.91a344.41,344.41,0,0,1,2,70q-.73,9.94-2,19.83c-.12,1,1.38.94,1.5,0Z" transform="translate(0 -0.15)"/>
+          <text class="signature-text" transform="translate(34.77 58.23) scale(0.97 1)" font-size="42" font-family="FreestyleScript-Regular, Freestyle Script">Aditya</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="screen-container">
+      <svg class="splash-svg" viewBox="0 0 440 305" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="myHexagon"
+            d="M293.545 167.405L229.5 204.381C227.025 205.81 223.975 205.81 221.5 204.381L157.455 167.405C154.98 165.976 153.455 163.335 153.455 160.476L153.455 86.5234C153.455 83.6653 154.98 81.0243 157.455 79.5952L221.5 42.6187C223.975 41.1896 227.025 41.1897 229.5 42.6187L293.545 79.5952C296.02 81.0243 297.545 83.6653 297.545 86.5234L297.545 160.476C297.545 163.335 296.02 165.976 293.545 167.405Z"
+            stroke="#6C63FF" stroke-width="4"/>
+
+          <path class="myHexagon"
+            d="M147.455 73.5953L211.5 36.6188C213.975 35.1898 217.025 35.1898 219.5 36.6188L283.545 73.5953C286.02 75.0244 287.545 77.6654 287.545 80.5235L287.545 154.477C287.545 157.335 286.02 159.976 283.545 161.405L219.5 198.381C217.025 199.81 213.975 199.81 211.5 198.381L147.455 161.405C144.98 159.976 143.455 157.335 143.455 154.477L143.455 80.5235C143.455 77.6654 144.98 75.0244 147.455 73.5953Z"
+            stroke="#6C63FF" stroke-width="4"/>
+
+           <path
+            class="letter"
+            d="M217.945 123.968V132H194.566V123.968H200.65L198.395 115.799H186.056L183.526 123.968H189.884V132H168.829V123.968H174.708L183.971 92.4883H177.647V84.4561H208.683V92.4883H202.291L212.271 123.968H217.945ZM196.446 108.826L192.481 94.5049L188.209 108.826H196.446Z"
+            stroke="#6C63FF"
+            stroke-width="3"
+          />
+          <path
+            class="letter"
+            d="M217.153 158V149.968H223.101V118.488H217.153V110.456H240.122V118.488H235.132V128.913H248.086V118.488H243.267V110.456H266.099V118.488H260.117V149.968H266.099V158H243.267V149.968H248.086V136.979H235.132V149.968H240.122V158H217.153Z"
+            stroke="#6C63FF"
+            stroke-width="3"
+          />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+/* 🔥 APPLY SAVED THEME */
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-theme");
+}
+
+/* 🔁 REDIRECT AFTER ANIMATION */
+setTimeout(() => {
+  window.location.href = "../home.html";
+}, 5500);
+</script>
+
+</body>
+</html>

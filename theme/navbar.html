@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------ GLOBAL ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: #0a192f;
+  color: #ccd6f6;
+  padding-top: 70px;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light-theme {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* ------------------ NAVBAR ------------------ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(16, 30, 48, 0.85);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.15);
+  backdrop-filter: blur(6px);
+  z-index: 150;
+}
+
+/* Light theme navbar */
+body.light-theme .navbar {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+/* ------------------ SIGNATURE ------------------ */
+.signature { 
+  font-family: 'Allura', cursive; 
+  font-size: 28px; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  text-decoration: none;
+  color: #64ffda;
+  font-weight: 600;
+}
+
+.bracket { 
+  font-size: 30px; 
+  color: #64ffda;
+}
+
+body.light-theme .signature,
+body.light-theme .bracket {
+  color: #0f172a;
+}
+
+/* ------------------ NAV LINKS ------------------ */
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #a8b2d1;
+  padding: 8px 12px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+/* Hover animation */
+.nav-links a:hover {
+  color: #64ffda;
+  transform: translateY(-2px);
+}
+
+/* Underline */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 0;
+  height: 2px;
+  background: #64ffda;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 70%;
+}
+
+/* Active link */
+.nav-links a.active {
+  color: #64ffda;
+  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  width: 70%;
+}
+
+/* Light theme nav links */
+body.light-theme .nav-links a {
+  color: #0f172a;
+}
+
+body.light-theme .nav-links a:hover,
+body.light-theme .nav-links a.active {
+  color: #0a3965;
+}
+
+body.light-theme .nav-links a::after {
+  background: #0a3965;
+}
+
+/* ------------------ THEME TOGGLE ------------------ */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #64ffda;
+  transition: transform 0.3s;
+}
+
+body.light-theme .theme-toggle {
+  color: #0f172a;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 120px;
+  }
+
+  .navbar {
+    height: auto;
+    padding: 10px 12px;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 8px;
+  }
+
+  .signature {
+    font-size: 22px;
+    gap: 6px;
+  }
+
+  .bracket {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <a href="theme/loading.html" class="signature">
+    <span class="bracket">&lt;</span>
+    Aditya Honrao
+    <span class="bracket">/&gt;</span>
+  </a>
+
+<ul class="nav-links">
+  <li><a href="home.html">Home</a></li>
+  <li><a href="education.html">Education</a></li>
+  <li><a href="skills.html">Skills</a></li>
+  <li><a href="certificates.html">Certificates</a></li>
+  <li><a href="projects.html">Projects</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+
+  <button id="themeToggle" class="theme-toggle">🌙</button>
+</nav>
+ 
+
+<script>
+/* ---------- THEME TOGGLE ---------- */
+const toggle = document.getElementById("themeToggle");
+
+toggle.onclick = () => {
+  document.body.classList.toggle("light-theme");
+  toggle.textContent = document.body.classList.contains("light-theme") ? "☀️" : "🌙";
+};
+
+/* ---------- AUTO ACTIVE NAV LINK ---------- */
+const currentPage = location.pathname.split("/").pop() || "home.html";
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  if (link.getAttribute("href") === currentPage) {
+    link.classList.add("active");
+  }
+});
+</script>
+
+</body>
+</html>

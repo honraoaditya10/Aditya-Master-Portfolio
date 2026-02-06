@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aditya's Portfolio - Projects</title>
+    <link rel="stylesheet" href="theme/theme.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: pan-x pan-y;
+        }
+
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #A6E1FA;
+            min-height: 100vh;
+            padding: 20px;
+            color: #0f172a;
+        }
+
+        body.light-theme {
+            background: #A6E1FA;
+            color: #0f172a;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 30px auto 40px;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .projects-header h1 {
+            font-size: 3em;
+            color: #64ffda;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        body.light-theme .projects-header h1 {
+            color: #0f172a;
+        }
+
+        .projects-header p {
+            font-size: 1.2em;
+            color: #94a3b8;
+        }
+
+        body.light-theme .projects-header p {
+            color: #475569;
+        }
+
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: #1e293b;
+            color: #64ffda;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        body.light-theme .filter-btn {
+            background: #ffffff;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        }
+
+        .filter-btn:hover {
+            background: #334155;
+            border-color: #64ffda;
+        }
+
+        .filter-btn.active {
+            background: #64ffda;
+            color: #0f172a;
+            border-color: #64ffda;
+        }
+
+        body.light-theme .filter-btn:hover {
+            background: #f1f5f9;
+            border-color: #64ffda;
+        }
+
+        body.light-theme .filter-btn.active {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .project-card {
+            background: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.light-theme .project-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+        }
+
+        .project-card:hover {
+            border-color: #64ffda;
+            box-shadow: 0 8px 24px rgba(100, 255, 218, 0.15);
+        }
+
+        body.light-theme .project-card:hover {
+            border-color: #64ffda;
+            box-shadow: 0 8px 24px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            color: #64ffda;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        body.light-theme .project-title {
+            color: #0f172a;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+
+        body.light-theme .project-meta {
+            color: #64748b;
+            border-bottom-color: #e2e8f0;
+        }
+
+        .project-status {
+            padding: 4px 12px;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        body.light-theme .project-status {
+            background: rgba(15, 23, 42, 0.1);
+            color: #0f172a;
+        }
+
+        .project-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+            font-size: 0.95em;
+        }
+
+        body.light-theme .project-description {
+            color: #475569;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-tag {
+            padding: 6px 14px;
+            background: #334155;
+            color: #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        body.light-theme .tech-tag {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .project-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: #334155;
+            color: #e2e8f0;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        body.light-theme .project-btn {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #e2e8f0;
+        }
+
+        .project-btn:hover {
+            background: #64ffda;
+            color: #0f172a;
+            border-color: #64ffda;
+        }
+
+        body.light-theme .project-btn:hover {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+        }
+
+        body.light-theme .project-btn {
+            color: #000;
+            border-color: #000;
+        }
+
+        .project-btn:hover {
+            background: #64ffda;
+            color: #0a192f;
+            transform: translateY(-2px);
+        }
+
+        body.light-theme .project-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .project-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .project-btn:disabled:hover {
+            background: transparent;
+            transform: none;
+        }
+
+        /* Modal Styles */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .project-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 40, 0.98);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        body.light-theme .modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            border-color: #ccc;
+        }
+
+        .modal-header {
+            padding: 30px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        body.light-theme .modal-header {
+            border-bottom-color: #ccc;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: #64ffda;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .modal-close {
+            color: #000;
+        }
+
+        .modal-close:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-title {
+            font-size: 2em;
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+
+        body.light-theme .modal-title {
+            color: #000;
+        }
+
+        .modal-description {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        body.light-theme .modal-description {
+            color: #000;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            color: #64ffda;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        body.light-theme .modal-section h3 {
+            color: #000;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #a0aec0;
+        }
+
+        body.light-theme .modal-section li {
+            color: #000;
+        }
+
+        .modal-section li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #64ffda;
+            font-weight: bold;
+        }
+
+        body.light-theme .modal-section li:before {
+            color: #000;
+        }
+
+        .modal-footer {
+            padding: 25px 30px;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            display: flex;
+            gap: 15px;
+        }
+
+        body.light-theme .modal-footer {
+            border-top-color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .projects-container {
+                margin-top: 100px;
+            }
+
+            .projects-header h1 {
+                font-size: 2em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-section {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            .filter-btn {
+                width: 100%;
+                padding: 8px 10px;
+                font-size: 0.85em;
+                white-space: normal;
+                line-height: 1.2;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="projects-container">
+        <div class="projects-header">
+            <h1>My Projects</h1>
+            <p>My projects makes use of vast variety of latest technology tools. My best experience is to create Data Science projects and deploy them to web applications using cloud infrastructure.  </p>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Development Projects</button>
+            <button class="filter-btn" data-filter="ml"> Data Science Projects</button>
+            <button class="filter-btn" data-filter="mobile">Mobile App Projects</button>
+            <button class="filter-btn" data-filter="personal">Personal Hobby Projects</button>
+            <button class="filter-btn" data-filter="internship">Internship Projects</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1 - Web Development -->
+            <div class="project-card" data-category="web" data-id="1">
+                <div class="project-content">
+                    <h3 class="project-title">Comming soon..</h3>
+                    <div class="project-meta">
+                        <span> </span>
+                        <span class="project-status"> </span>
+                    </div>
+                    <p class="project-description">
+                     </p>
+                    <div class="project-tech">
+                        <span class="tech-tag"> </span>
+                         <span class="tech-tag"> </span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="#" class="project-btn" onclick="openProjectModal(1); return false;">
+                            👁️ Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 - Machine Learning / Data Science -->
+            <div class="project-card" data-category="ml" data-id="2">
+                <div class="project-content">
+                    <h3 class="project-title">Comming Soon</h3>
+                    <div class="project-meta">
+                        <span>📅 Dec 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                    <p class="project-description">
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag"> </span>
+                         <span class="tech-tag"> </span>
+                        <span class="tech-tag"> </span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="#" class="project-btn" onclick="openProjectModal(2); return false;">
+                            👁️ Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 - Mobile App -->
+            <div class="project-card" data-category="mobile" data-id="3">
+                <div class="project-content">
+                    <h3 class="project-title">WASTE NOT</h3>
+                    <div class="project-meta">
+                        <span>📅 Nov 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                    <p class="project-description">
+                        WasteNot is a Flutter-based donation platform that connects users with NGOs to donate food, clothes, and books while enabling easy tracking and event management.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Firebase Authentication</span>
+                        <span class="tech-tag">Firebase Database</span>
+                        <span class="tech-tag">Google Map API</span>
+                        <span class="tech-tag">Google Contact API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/honraoaditya10-wq/Waste-Not-Diploma-Final-Year-Project.git" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="#" class="project-btn" onclick="openProjectModal(3); return false;">
+                            👁️ Link 
+                        </a>
+                    </div>
+                </div>
+            </div>   
+
+
+
+
+
+            <!-- Project 4 - Academic -->
+            <div class="project-card" data-category="academic" data-id="4">
+                <div class="project-content">
+                    <h3 class="project-title">Student Management System</h3>
+                    <div class="project-meta">
+                        <span>📅 Oct 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive system for managing student records, attendance, grades, and generating detailed reports for academic institutions.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaFX</span>
+                        <span class="tech-tag">JDBC</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="#" class="project-btn" onclick="openProjectModal(4); return false;">
+                            👁️ Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 - Personal/Hobby -->
+            <div class="project-card" data-category="personal" data-id="5">
+                <div class="project-content">
+                    <h3 class="project-title">shouldering-surffing</h3>
+                    <div class="project-meta">
+                        <span>📅 Sep 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                    <p class="project-description">
+                       About
+OmniGuard Pro is a web-based advanced security system designed to monitor, detect, and authenticate users in real time. It integrates facial authentication, secure PIN access, motion detection, privacy controls, alerts, and activity logging into a single interactive dashboard, ensuring enhanced security and user privacy.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/honraoaditya10-wq/shouldering-surffing.git" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="https://shouldering-surffing.vercel.app/" class="project-btn" target="_blank">
+                            👁️ Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 - Internship/Industry -->
+            <div class="project-card" data-category="internship" data-id="6">
+                <div class="project-content">
+                    <h3 class="project-title">Job-Portal</h3>
+                    <div class="project-meta">
+                        <span>📅 Jan 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                    <p class="project-description">
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/techonsy/Job-Portal-FE.git" target="_blank" class="project-btn">
+                            <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
+                        </a>
+                        <a href="#" class="project-btn" onclick="openProjectModal(6); return false;">
+                            👁️ Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+            <div class="modal-header">
+                <img id="modalImage" src="" alt="Project" class="modal-image">
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modalTitle">Project Title</h2>
+                <p class="modal-description" id="modalDescription">
+                    Detailed project description will appear here...
+                </p>
+                
+                <div class="modal-section">
+                    <h3>Key Features</h3>
+                    <ul id="modalFeatures">
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Technologies Used</h3>
+                    <div class="project-tech" id="modalTech">
+                        <span class="tech-tag">Tech 1</span>
+                        <span class="tech-tag">Tech 2</span>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Challenges & Solutions</h3>
+                    <p id="modalChallenges" style="color: #a0aec0; line-height: 1.8;">
+                        Link about challenges faced and how they were solved...
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="modalGithub" href="#" target="_blank" class="project-btn" style="flex: 1;">
+                    <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> View on GitHub
+                </a>
+                <a id="modalLive" href="#" target="_blank" class="project-btn" style="flex: 1;">
+                    🚀 Live Demo
+                </a>
+            </div>
+        </div>
+    </div>
+   
+    <script src="theme/theme.js"></script>
+    <script>
+        // Prevent zoom via keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent zoom via mouse wheel
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent pinch-to-zoom on touch devices
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+        // Project data with detailed information
+        
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Modal functions
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const project = projectsData[projectId];
+
+            if (!project) {
+                console.error('Project not found');
+                return;
+            }
+
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalImage').src = project.image;
+            
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = project.features.map(f => `<li>${f}</li>`).join('');
+            
+            const techContainer = document.getElementById('modalTech');
+            techContainer.innerHTML = project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('');
+            
+            document.getElementById('modalChallenges').textContent = project.challenges;
+            document.getElementById('modalGithub').href = project.github;
+            
+            const liveBtn = document.getElementById('modalLive');
+            if (project.live) {
+                liveBtn.href = project.live;
+                liveBtn.style.display = 'flex';
+            } else {
+                liveBtn.style.display = 'none';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                closeProjectModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+
+        // Load navbar
+        fetch('theme/navbar.html').then(r => r.text()).then(html => {
+            document.getElementById('navbar-root').innerHTML = html;
+        });
+        
+        fetch('theme/copyright.html').then(r => r.text()).then(html => {
+            document.getElementById('copyright-root').innerHTML = html;
+        });
+    </script>
+    <div id="copyright-root"></div>
+</body>
+</html>

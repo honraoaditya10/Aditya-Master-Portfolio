@@ -1,0 +1,398 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta chars et="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Aditya's Portfolio</title>
+        <link rel="stylesheet" href="theme/theme.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                touch-action: pan-x pan-y;
+            }
+
+            html {
+                -ms-touch-action: manipulation;
+                touch-action: manipulation;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                padding: 20px;
+                -ms-touch-action: manipulation;
+                touch-action: manipulation;
+            }
+
+            body.light-theme {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            }
+
+            .education-container {
+                max-width: 1400px;
+                margin: 30px auto 40px;
+            }
+
+            .education-header {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+
+            .education-header h1 {
+                font-size: 2.5em;
+                color: #64ffda;
+                margin-bottom: 10px;
+                font-weight: 700;
+            }
+
+            body.light-theme .education-header h1 {
+                color: #000;
+            }
+
+            .education-content {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .education-items {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .education-video {
+                flex: 0 0 350px;
+            }
+
+            .education-video video {
+                width: 100%;
+                border-radius: 10px;
+                border: 2px solid rgba(100, 255, 218, 0.3);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            body.light-theme .education-video video {
+                border-color: #667eea;
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            }
+
+            .education-card {
+                background: rgba(20, 20, 40, 0.8);
+                border: 1px solid rgba(100, 255, 218, 0.2);
+                border-radius: 10px;
+                padding: 30px;
+                transition: all 0.3s ease;
+            }
+
+            body.light-theme .education-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid #ccc;
+            }
+
+            .education-card:hover {
+                border-color: #64ffda;
+                box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+            }
+
+            body.light-theme .education-card:hover {
+                border-color: #667eea;
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            }
+
+            .education-card h3 {
+                font-size: 1.6em;
+                color: #64ffda;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+
+            body.light-theme .education-card h3 {
+                color: #000;
+            }
+
+            .institution {
+                font-size: 1em;
+                color: #a0aec0;
+                margin-bottom: 8px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            body.light-theme .institution {
+                color: #000;
+            }
+
+            .location-icon {
+                color: #64ffda;
+                font-size: 1.1em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .location-icon img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                filter: brightness(1.5);
+                transition: all 0.3s ease;
+            }
+
+            body.light-theme .location-icon img {
+                filter: brightness(1.2);
+            }
+
+            .location-icon:hover img {
+                filter: brightness(2);
+                transform: scale(1.2);
+            }
+
+            body.light-theme .location-icon:hover img {
+                filter: brightness(1.5);
+            }
+
+            .duration {
+                font-size: 0.9em;
+                color: #718096;
+                margin-bottom: 15px;
+            }
+
+            body.light-theme .duration {
+                color: #000;
+            }
+
+            .score {
+                font-size: 1em;
+                color: #64ffda;
+                font-weight: 600;
+                margin-top: 15px;
+            }
+
+            body.light-theme .score {
+                color: #000;
+            }
+
+            .semester-links {
+                margin-top: 15px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .semester-btn {
+                display: inline-block;
+                padding: 8px 16px;
+                background: transparent;
+                color: #64ffda;
+                border: 1px solid #64ffda;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 0.85em;
+                font-weight: 500;
+                transition: all 0.3s;
+                cursor: pointer;
+            }
+
+            body.light-theme .semester-btn {
+                color: #000;
+                border-color: #667eea;
+            }
+
+            .semester-btn:hover {
+                background: rgba(100, 255, 218, 0.1);
+                border-color: #00ff88;
+                color: #64ffda;
+            }
+
+            body.light-theme .semester-btn:hover {
+                background: rgba(102, 126, 234, 0.1);
+                border-color: #667eea;
+                color: #000;
+            }
+
+            @media (max-width: 768px) {
+                .education-container {
+                    margin-top: 100px;
+                }
+
+                .education-header h1 {
+                    font-size: 2em;
+                }
+
+                .education-card {
+                    padding: 20px;
+                }
+
+                .education-content {
+                    flex-direction: column;
+                }
+
+                .education-video {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar-root"></div>
+
+        <div class="education-container">
+            <div class="education-header">
+                <h1>Education</h1>
+            </div>
+
+            <div class="education-content">
+                <div class="education-video">
+                    <video id="education-video" autoplay loop muted>
+                        <source src="images/education.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="education-items">
+                <!-- Diploma -->
+                <div class="education-card">
+                    <h3>Diploma</h3>
+                    <div class="institution">
+                        <span class="location-icon" onclick="openMap('Government Polytechnic Pune')">
+                            <img src="images/Skills/location.png" alt="Location">
+                        </span>
+                        <span>Government Polytechnic Pune, 411005</span>
+                    </div>
+                    <div class="duration">2023 - 26</div>
+                    <div class="score">Score: 92%</div>
+                    <div class="semester-links">
+                        <a href="https://drive.google.com/file/d/1ITknjL85c-kJdktdxhIKRPPF_sG6lmnG/view?usp=sharing" target="_blank" class="semester-btn">Sem 1
+                            <br>(80.64%)</a>
+                        <a href="https://drive.google.com/file/d/1ppanVghUQnodX2hclD9Q9melhOmrhjmE/view?usp=sharing" target="_blank" class="semester-btn">Sem 2
+                            <br>(84.11%)
+                        </a>
+                        <a href="https://drive.google.com/file/d/138ugsnXJxxV0zHbw1P6HC8RK7546i_Tw/view?usp=sharing" target="_blank" class="semester-btn">Sem 3
+                            <br>(86.97%)
+                        </a>
+                        <a href="https://drive.google.com/file/d/1hyjZeNyFiQnhogOajQOXb_MDtG1ZTQvk/view?usp=sharing" target="_blank" class="semester-btn">Sem 4
+                            <br>(82.00%)
+                        </a>
+                        <a href="https://drive.google.com/file/d/1cza0iPTFpTJSrBl4DqsoD9FnXbTJ1ujr/view?usp=sharing" target="_blank" class="semester-btn">Sem 5
+                            <br>(94.55%)
+                        </a>
+                        <a href="Upcoming" class="semester-btn">Sem 6
+                            <br>(Upcoming)
+                        </a>
+                    </div>
+                </div>
+          
+                <!-- Foundation (Skill Development Program) -->
+                <div class="education-card">
+                    <h3>Foundation (Skill Development Program)</h3>
+                    <div class="institution">
+                        <span class="location-icon" onclick="window.open('https://maps.app.goo.gl/MrBKa25jJaVPgHNk8', '_blank')" title="View location">
+                            <img src="images/Skills/location.png" alt="Location">
+                        </span>
+                        <span>Speakwell English Academy Airoli Mumbai, 400708</span>
+                    </div>
+                    <div class="duration">30 March to 30 June 2023</div>
+                    <div class="score">Grade: A+</div>
+                    <div class="semester-links">
+                        <a href="https://drive.google.com/file/d/1ygIjHrD_DLROmNKwyrU2mxEKy5aJc2N2/view?usp=sharing" target="_blank" class="semester-btn">Certificate
+                            <br></a>
+                    
+                    </div>
+                </div>
+
+                <!-- 10th Standard -->
+                <div class="education-card">
+                    <h3>10th Standard</h3>
+                    <div class="institution">
+                        <span class="location-icon" onclick="openMap('Lal Bahadur Shastri Vidyalay Udgir, Latur 413517')">
+                            <img src="images/Skills/location.png" alt="Location">
+                        </span>
+                        <span>Lal Bahadur Shastri Vidyalay Udgir, Latur 413517</span>
+                    </div>
+                    <div class="duration">2022-23</div>
+                    <div class="score">Score: 97%</div>
+                    <div class="semester-links">
+                        <a href="https://drive.google.com/file/d/1asz8eztF0WfYtDYLZ-anhwUKAFQBZjmM/view?usp=sharing" target="_blank" class="semester-btn">Marksheet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script src="theme/theme.js"></script>
+        <script>
+            // Prevent zoom via keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                    e.preventDefault();
+                }
+            });
+
+            // Prevent zoom via mouse wheel
+            document.addEventListener('wheel', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            // Prevent pinch-to-zoom on touch devices
+            document.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
+            });
+
+            document.addEventListener('gesturechange', function(e) {
+                e.preventDefault();
+            });
+
+            document.addEventListener('gestureend', function(e) {
+                e.preventDefault();
+            });
+
+            function openMap(location) {
+                const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(location)}`;
+                window.open(mapsUrl, '_blank');
+            }
+
+            fetch('theme/navbar.html').then(r => r.text()).then(html => {
+                document.getElementById('navbar-root').innerHTML = html;
+            });
+
+            // Theme-aware video switching
+            function updateVideoForTheme() {
+                const video = document.getElementById('education-video');
+                const isLightTheme = document.body.classList.contains('light-theme');
+                const newSrc = isLightTheme ? 'images/education1.mp4' : 'images/education.mp4';
+                
+                if (video.querySelector('source').src !== newSrc) {
+                    video.querySelector('source').src = newSrc;
+                    video.load();
+                    video.play();
+                }
+            }
+
+            // Initial theme check
+            setTimeout(updateVideoForTheme, 100);
+
+            // Watch for theme changes
+            const observer = new MutationObserver(updateVideoForTheme);
+            observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            
+            fetch('theme/copyright.html').then(r => r.text()).then(html => {
+                document.getElementById('copyright-root').innerHTML = html;
+            });
+        </script>
+        <div id="copyright-root"></div>
+    </body>
+    </html>

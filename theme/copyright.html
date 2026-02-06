@@ -1,0 +1,90 @@
+    <footer class="copyright-footer">
+        <div class="copyright-container">
+            <p>&copy; <span id="year"></span> Aditya 2026. All rights reserved.</p>
+            <p>Design and developed by ❤️ <a href="#" class="copyright-link"></a></p>
+        </div>
+    </footer>
+
+<style>
+.copyright-footer {
+    background: transparent;
+    color: #64ffda;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    border-top: 1px solid transparent;
+    font-size: 14px;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.copyright-footer.light-theme {
+    background: transparent;
+    color: #000000;
+    border-top-color: transparent;
+}
+
+.copyright-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.copyright-container p {
+    margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+    .copyright-footer {
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+
+    .copyright-container {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .copyright-container p {
+        margin: 0;
+        line-height: 1.4;
+        text-align: center;
+    }
+}
+
+.copyright-link {
+    color: #64ffda;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.copyright-footer.light-theme .copyright-link {
+    color: #000000;
+}
+
+.copyright-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<script>
+// Auto-update copyright year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Apply theme to copyright footer
+function updateCopyrightTheme() {
+    const footer = document.querySelector('.copyright-footer');
+    const isDark = !document.body.classList.contains('light-theme');
+    if (isDark) {
+        footer.classList.remove('light-theme');
+    } else {
+        footer.classList.add('light-theme');
+    }
+}
+
+// Call on page load and when theme changes
+document.addEventListener('DOMContentLoaded', updateCopyrightTheme);
+document.addEventListener('themeChanged', updateCopyrightTheme);
+</script>

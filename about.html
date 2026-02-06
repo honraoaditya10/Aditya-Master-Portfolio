@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aditya's Portfulio</title>
+    <link rel="stylesheet" href="theme/theme.css">
+    <style>
+        * {
+            touch-action: pan-x pan-y;
+        }
+        
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+        
+        body {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    
+
+    </div>
+   
+ <script src="theme/theme.js"></script>
+    <script>
+        // Prevent zoom via keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent zoom via mouse wheel
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent pinch-to-zoom on touch devices
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+        function handleLogout() {
+            window.location.href = "Athentication/login.html";
+        }
+        fetch('theme/navbar.html').then(r => r.text()).then(html => {
+            document.getElementById('navbar-root').innerHTML = html;
+            const container = document.querySelector('.home-container');
+            if (container) container.style.marginTop = '96px';
+        });
+    </script>
+</body>
+</html>

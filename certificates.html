@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aditya's Portfolio - Certificates</title>
+    <link rel="stylesheet" href="theme/theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: pan-x pan-y;
+        }
+
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .certificates-container {
+            max-width: 1400px;
+            margin: 60px auto 40px;
+            padding: 10px 50px 50px 50px;   
+            background: rgba(20, 20, 40, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-theme .certificates-container {
+            background: rgba(255, 255, 255, 0.98);
+            border: 2px solid #333333;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .cert-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cert-header h1 {
+            font-size: 2.8em;
+            color: #64ffda;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        body.light-theme .cert-header h1 {
+            color: #667eea;
+        }
+
+        .cert-header p {
+            font-size: 1.1em;
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        body.light-theme .cert-header p {
+            color: #555;
+        }
+
+        .search-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1em;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ccd6f6;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-bar::placeholder {
+            color: #888;
+        }
+
+        .search-bar:focus {
+            border-color: #64ffda;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+        }
+
+        body.light-theme .search-bar {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: #667eea;
+            color: #333;
+        }
+
+        body.light-theme .search-bar::placeholder {
+            color: #999;
+        }
+
+        body.light-theme .search-bar:focus {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.08);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Light theme text colors (black) */
+        body.light-theme {
+            color: #000;
+        }
+
+        body.light-theme .cert-header h1,
+        body.light-theme .cert-header p,
+        body.light-theme .certificate-title,
+        body.light-theme .certificate-org,
+        body.light-theme .certificate-date,
+        body.light-theme .certificate-description,
+        body.light-theme .category-title,
+        body.light-theme .no-certificates,
+        body.light-theme .empty-state,
+        body.light-theme .certificate-image,
+        body.light-theme .cert-detail-label,
+        body.light-theme .cert-detail-value,
+        body.light-theme .cert-verification-code-label,
+        body.light-theme .cert-verification-code-text,
+        body.light-theme .cert-modal-body,
+        body.light-theme .cert-modal-header h2,
+        body.light-theme .cert-modal-btn,
+        body.light-theme .cert-modal-btn-secondary,
+        body.light-theme .cert-modal-btn-download,
+        body.light-theme .search-bar,
+        body.light-theme .category-tab,
+        body.light-theme .cert-view-btn,
+        body.light-theme .cert-share-btn {
+            color: #000;
+        }
+
+        body.light-theme .category-tab {
+            border-color: #000;
+        }
+
+        body.light-theme .category-tab:hover {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: #000;
+        }
+
+        body.light-theme .category-tab.active {
+            background: #e5e7eb;
+            border-color: #000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-theme .cert-view-btn {
+            background: #5e5a5a;
+            border: 1px solid #222020;
+            color: #ffffff;
+        }
+
+        body.light-theme .cert-view-btn:hover {
+            background: #111111;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-theme .cert-share-btn {
+            background: #000000;
+            border: 1px solid #000;
+            color: #ffffff;
+        }
+
+        body.light-theme .cert-share-btn:hover {
+            background: #111111;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .certificate-card {
+            background: rgba(30, 40, 70, 0.6);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.light-theme .certificate-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .certificate-card:hover {
+            border-color: #64ffda;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        body.light-theme .certificate-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            color: #888;
+            overflow: hidden;
+        }
+
+        body.light-theme .certificate-image {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(102, 126, 234, 0.1) 100%);
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-image img {
+            transform: scale(1.05);
+        }
+
+        .certificate-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate-title {
+            font-size: 1.4em;
+            color: #64ffda;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        body.light-theme .certificate-title {
+            color: #667eea;
+        }
+
+        .certificate-org {
+            font-size: 0.95em;
+            color: #999;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        body.light-theme .certificate-org {
+            color: #666;
+        }
+
+        .certificate-date {
+            font-size: 0.85em;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        body.light-theme .certificate-date {
+            color: #888;
+        }
+
+        .certificate-description {
+            font-size: 0.9em;
+            color: #bbb;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        body.light-theme .certificate-description {
+            color: #666;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .cert-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cert-view-btn {
+            background: rgba(100, 255, 218, 0.15);
+            color: #64ffda;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        body.light-theme .cert-view-btn {
+            background: rgba(102, 126, 234, 0.08);
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+
+        .cert-view-btn:hover {
+            background: rgba(100, 255, 218, 0.25);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.2);
+        }
+
+        body.light-theme .cert-view-btn:hover {
+            background: rgba(102, 126, 234, 0.15);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .cert-share-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            border: none;
+        }
+
+        body.light-theme .cert-share-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .cert-share-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        body.light-theme .cert-share-btn:hover {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #aaa;
+        }
+
+        body.light-theme .empty-state {
+            color: #999;
+        }
+
+        .empty-state p {
+            font-size: 1.1em;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 12px 28px;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            background: transparent;
+            color: #ccd6f6;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        body.light-theme .category-tab {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .category-tab:hover {
+            background: rgba(100, 255, 218, 0.08);
+            border-color: #64ffda;
+        }
+
+        body.light-theme .category-tab:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-color: #667eea;
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .category-tab.active:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            color: #64ffda;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        body.light-theme .category-title {
+            color: #667eea;
+        }
+
+        .no-certificates {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.1em;
+        }
+
+        body.light-theme .no-certificates {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .certificates-container {
+                padding: 30px;
+                margin: 40px auto 20px;
+            }
+
+            .cert-header h1 {
+                font-size: 2em;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-header p {
+                font-size: 0.95em;
+            }
+
+            .category-tabs {
+                gap: 10px;
+            }
+
+            .category-tab {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Certificate Modal Styles */
+        .cert-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .cert-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-modal-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 90%;
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 0;
+        }
+
+        body.light-theme .cert-modal-content {
+            background: #ffffff;
+        }
+
+        .cert-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .cert-modal-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .cert-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .cert-modal-close:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .cert-modal-body {
+            padding: 20px;
+            color: #333;
+        }
+
+        .cert-modal-body p {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .cert-detail-group {
+            margin-bottom: 25px;
+        }
+
+        .cert-detail-label {
+            font-size: 0.85em;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cert-detail-value {
+            font-size: 1.1em;
+            color: #333;
+            font-weight: 500;
+        }
+
+        body.light-theme .cert-detail-value {
+            color: #0f172a;
+        }
+
+        .cert-modal-image {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+            border-radius: 0px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .cert-verification-code {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+
+        body.light-theme .cert-verification-code {
+            background: #f0f4ff;
+        }
+
+        .cert-verification-code-label {
+            font-size: 0.85em;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .cert-verification-code-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .cert-modal-footer {
+            display: flex;
+            gap: 12px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .cert-modal-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cert-modal-btn-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+
+        .cert-modal-btn-download:hover {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .cert-modal-btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .cert-modal-btn-secondary:hover {
+            background: #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            .cert-modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .cert-modal-header {
+                padding: 20px;
+            }
+
+            .cert-modal-header h2 {
+                font-size: 1.2em;
+            }
+
+            .cert-modal-body {
+                padding: 20px;
+            }
+
+            .cert-modal-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cert-modal-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Light theme overrides: remove blue accents */
+        body.light-theme .cert-header h1,
+        body.light-theme .cert-header p,
+        body.light-theme .certificate-title,
+        body.light-theme .certificate-org,
+        body.light-theme .certificate-date,
+        body.light-theme .certificate-description,
+        body.light-theme .category-title,
+        body.light-theme .no-certificates,
+        body.light-theme .empty-state,
+        body.light-theme .cert-detail-label,
+        body.light-theme .cert-detail-value,
+        body.light-theme .cert-verification-code-label,
+        body.light-theme .cert-verification-code-text,
+        body.light-theme .cert-modal-body,
+        body.light-theme .search-bar,
+        body.light-theme .category-tab {
+            color: #000;
+        }
+
+        body.light-theme .search-bar {
+            border-color: #000;
+            color: #000;
+        }
+
+        body.light-theme .search-bar:focus {
+            border-color: #000;
+            background: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-theme .certificate-image {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.08) 100%);
+        }
+
+        body.light-theme .certificate-card:hover {
+            border-color: #000;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-theme .category-tab {
+            border-color: #000;
+        }
+
+        body.light-theme .category-tab:hover {
+            background: rgba(0, 0, 0, 0.08);
+            border-color: #000;
+        }
+
+        body.light-theme .category-tab.active {
+            background: #111;
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-theme .category-tab.active:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body.light-theme .cert-view-btn,
+        body.light-theme .cert-share-btn {
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
+        }
+
+        body.light-theme .cert-view-btn:hover,
+        body.light-theme .cert-share-btn:hover {
+            background: #111;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-theme .cert-modal-header {
+            background: #000;
+        }
+
+        body.light-theme .cert-verification-code {
+            background: #f3f4f6;
+            border-left: 4px solid #000;
+        }
+
+        body.light-theme .cert-modal-btn-download {
+            background: transparent;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        body.light-theme .cert-modal-btn-secondary {
+            color: #000;
+            border: 1px solid #000;
+            background: #f3f4f6;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="certificates-container">
+        <div class="cert-header">
+            <h1>My Certificates</h1>
+            <p>Professional certifications and achievements</p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="category-tab active" onclick="filterCategory('all')">
+                📋 All Certificates
+            </button>
+            <button class="category-tab" onclick="filterCategory('professional')">
+                🎓 Professional Learning
+            </button>
+            <button class="category-tab" onclick="filterCategory('coding')">
+                💻 Coding Competitions
+            </button>
+            <button class="category-tab" onclick="filterCategory('hackathon')">
+                🚀 Hackathons
+            </button>
+            <button class="category-tab" onclick="filterCategory('extracurricular')">
+                🎯 Extra Curricular
+            </button>
+        </div>
+
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-bar" 
+                id="certificateSearch" 
+                placeholder="Search your certificates..."
+            >
+        </div>
+
+        <!-- Professional Learning Section -->
+        <div class="category-section active" id="section-all">
+            <div class="certificates-grid" id="gridAll">
+                <!-- All certificates displayed here -->
+            </div>
+        </div>
+
+        <!-- Professional Learning Section -->
+        <div class="category-section" id="section-professional">
+            <div class="category-title">Professional Learning & Development</div>
+            <div class="certificates-grid" id="gridProfessional">
+                <!-- Professional certificates -->
+                <div class="certificate-card" data-category="professional" 
+                    data-title="AWS Cloud Practitioner"
+                    data-org="AWS"
+                    data-date="june 2025 - july 2025"
+                    data-duration="june 2025 - july 2025"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/Aws_cloud_practtitioner.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/AWS cloud.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Aws_cloud_practtitioner.png" alt="AWS Cloud Practitioner Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">AWS Cloud Practitioner</h3>
+                        <p class="certificate-org">AWS</p>
+                        <p class="certificate-date">Issued: june 2025 - july 2025</p>
+                        <p class="certificate-description">
+                                Demonstrates foundational knowledge of AWS cloud concepts, core services, security, and pricing models.                        </p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="certificate-card" data-category="professional" 
+                    data-title="Python"
+                    data-org="Code with Harry"
+                    data-date="november 2025 - january 2026"
+                    data-duration="november 2025 - january 2026"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/python_codewith_harry.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/python_code_with_harry.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/python_codewith_harry.png" alt="Python Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Python</h3>
+                        <p class="certificate-org">Code with Harry</p>
+                        <p class="certificate-date">Issued: november 2025 - january 2026</p>
+                        <p class="certificate-description">
+                                Gained hands-on experience in Python fundamentals, programming concepts, and practical problem-solving from scratch.                      </p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-category="professional" 
+                    data-title="Java"
+                    data-org="HackerRank"
+                    data-date="january 2026"
+                    data-duration="january 2026"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/java_Basic.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/java_basic certificate.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/java_Basic.png" alt="Java Basic Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Java</h3>
+                        <p class="certificate-org">HackerRank</p>
+                        <p class="certificate-date">Issued: january 2026</p>
+                        <p class="certificate-description">
+                       Validated foundational knowledge of Java programming, including syntax, data types, control flow, and basic problem-solving</p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                   <div class="certificate-card" data-category="professional" 
+                    data-title="Data Science"
+                    data-org="Code with Harry"
+                    data-date="september 2025 - february 2026"
+                    data-duration="september 2025 - february 2026"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/data_science.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/Data Science.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/data_science.png" alt="Data Science Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Data Science</h3>
+                        <p class="certificate-org">Code with Harry</p>
+                        <p class="certificate-date">Issued: september 2025 - february 2026</p>
+                        <p class="certificate-description">
+               Developed practical skills in data analysis, statistics, Python, and machine learning for real-world data science applications</p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                   <div class="certificate-card" data-category="professional" 
+                    data-title="Python Programming Training Certificate"
+                    data-org="IIT Bombay"
+                    data-date="December 2024 - March 2025"
+                    data-duration="December 2024 - March 2025"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/Python_training_cetificate.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/Python Programming Training Certificate.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Python_training_cetificate.png" alt="Python Programming Training Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Python Programming Training Certificate</h3>
+                        <p class="certificate-org">IIT Bombay</p>
+                        <p class="certificate-date">Issued: December 2024 - March 2025  </p>
+                        <p class="certificate-description">
+              Completed comprehensive training in Python programming, covering basics to advanced topics, including data structures and libraries.                       </p>                       
+         <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                   <div class="certificate-card" data-category="professional" 
+                    data-title="HTML"
+                    data-org="Great Learning"
+                    data-date="february 2024 - March 2024"
+                    data-duration="february 2024 - March 2024"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/html.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/html.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/html.png" alt="HTML Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">HTML</h3>
+                        <p class="certificate-org">Great Learning</p>
+                        <p class="certificate-date">Issued: february 2024 - March 2024</p>
+                        <p class="certificate-description">
+              Gained knowledge of HTML structure, tags, forms, and responsive webpage creation.                       
+         <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                   <div class="certificate-card" data-category="professional" 
+                    data-title="CSS"
+                    data-org="Great Learning"
+                    data-date="march 2024 - april 2024"
+                    data-duration="march 2024 - april 2024"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/css.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/css.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/css.png" alt="CSS Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">CSS</h3>
+                        <p class="certificate-org">Great Learning</p>
+                        <p class="certificate-date">Issued: march 2024 - april 2024</p>
+                        <p class="certificate-description">
+Gained knowledge of CSS styling, selectors, box model, and responsive design techniques.                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Coding Competitions Section -->
+        <div class="category-section" id="section-coding">
+            <div class="category-title">Coding Competitions & Contests</div>
+            <div class="certificates-grid" id="gridCoding">
+                <!-- Coding competition certificates -->
+                <div class="certificate-card" data-category="coding" 
+                    data-title="National Coding Championship"
+                    data-org="CodeMasters India"
+                    data-date="Nov 2024"
+                    data-duration="Single Event"
+                    data-code="CODEMASTERS-2024-NCC001">
+                    <div class="certificate-image">
+                        <span>Certificate Image</span>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">National Coding Championship</h3>
+                        <p class="certificate-org">CodeMasters India</p>
+                        <p class="certificate-date">Issued: Nov 2024</p>
+                        <p class="certificate-description">
+                            Secured 3rd position in the national coding championship, solving complex algorithmic problems.
+                        </p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-category="coding" 
+                    data-title="Web Development Hackathon"
+                    data-org="TechQuest Online"
+                    data-date="Sep 2024"
+                    data-duration="48 Hours"
+                    data-code="TECHQUEST-2024-WDH001">
+                    <div class="certificate-image">
+                        <span>Certificate Image</span>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Web Development Hackathon</h3>
+                        <p class="certificate-org">TechQuest Online</p>
+                        <p class="certificate-date">Issued: Sep 2024</p>
+                        <p class="certificate-description">
+                            Winner of 48-hour web development competition, building innovative solutions under time constraints.
+                        </p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-card" data-category="coding" 
+                    data-title="Data Structures Challenge"
+                    data-org="AlgoExperts"
+                    data-date="Jul 2024"
+                    data-duration="Single Event"
+                    data-code="ALGOEXPERTS-2024-DSC001">
+                    <div class="certificate-image">
+                        <span>Certificate Image</span>
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Data Structures Challenge</h3>
+                        <p class="certificate-org">AlgoExperts</p>
+                        <p class="certificate-date">Issued: Jul 2024</p>
+                        <p class="certificate-description">
+                            Successfully completed advanced data structures challenge with 100% problem-solving accuracy.
+                        </p>
+                        <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hackathons Section -->
+        <div class="category-section" id="section-hackathon">
+            <div class="category-title">Hackathon Participations & Achievements</div>
+            <div class="certificates-grid" id="gridHackathon">
+
+
+                <!-- Hackathon certificates -->
+              
+                   <div class="certificate-card" data-category="hackathon" 
+                    data-title="MIT Hackathon 2025"
+                    data-org="MIT college Alandi"
+                    data-date="24 & 25 Aug"
+                    data-duration="24 & 25 Aug"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/Hackthon/MIT.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/MIT Hackthon.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Hackthon/MIT.png" alt="MIT Hackathon">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">MIT Hackathon 2025</h3>
+                        <p class="certificate-org">MIT college Alandi</p>
+                        <p class="certificate-date">Issued: 24 & 25 Aug</p>
+                        <p class="certificate-description">
+              Qualified for Round 2 and 4th in a 24-hour National Level Hackathon, demonstrating innovation, problem-solving, and real-world project development skills.          
+         <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+               
+            </div>
+        </div>
+
+        <!-- Extra Curricular Section -->
+        <div class="category-section" id="section-extracurricular">
+            <div class="category-title">Extra Curricular Activities & Events</div>
+            <div class="certificates-grid" id="gridExtracurricular">
+                <!-- Extra Curricular certificates -->
+
+                 <div class="certificate-card" data-category="extracurricular" 
+                    data-title="Google AI (Gemini) Certified Student"
+                    data-org="Google"
+                    data-date="5 january 2026"
+                    data-duration="5 to 5 january 2029"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/Extra Curricular/Google AI Student.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/Google AI Student.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Extra Curricular/Google AI Student.png" alt="Google AI (Gemini) Certified Student Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Google AI (Gemini) Certified Student</h3>
+                        <p class="certificate-org">Google</p>
+                        <p class="certificate-date">Issued: 5 january 2026</p>
+                        <p class="certificate-description">
+                Recognized as a Google AI (Gemini) Certified Student, demonstrating proficiency in AI concepts and applications.                       </p>
+         <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+              
+                   <div class="certificate-card" data-category="extracurricular" 
+                    data-title="DELTA SIGMA PIE"
+                    data-org="COEP"
+                    data-date="27 - 29 Octomber 2023"
+                    data-duration="27 - 29 Octomber 2023"
+                    data-code="AWS-2025-ACP001"
+                    data-image="images/certificates/Extra Curricular/mindspark2023.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/mindspark2023.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Extra Curricular/mindspark2023.png" alt="DELTA SIGMA PIE Certificate">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">DELTA SIGMA PIE</h3>
+                        <p class="certificate-org">COEP</p>
+                        <p class="certificate-date">Issued: 27 - 29 Octomber 2023</p>
+                        <p class="certificate-description">
+              Participated in Delta Sigma Pie event at MindSpark’23, a national technical fest, showcasing analytical thinking and problem-solving skills.                       
+         <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="cert-modal" id="certModal">
+        <div class="cert-modal-content">
+            <div class="cert-modal-header">
+                <h2 id="modalTitle">Certificate Details</h2>
+                <button class="cert-modal-close" onclick="closeCertModal()">&times;</button>
+            </div>
+            <div class="cert-modal-body">
+                <div id="modalBody">
+                    <!-- Certificate details will be inserted here -->
+                </div>
+            </div>
+            <div class="cert-modal-footer">
+                <button class="cert-modal-btn cert-modal-btn-download" onclick="downloadCertificate()">
+                    ⬇️ Download PDF
+                </button>
+                <button class="cert-modal-btn cert-modal-btn-secondary" onclick="shareCertificate()">
+                    🔗 Share
+                </button>
+                <button class="cert-modal-btn cert-modal-btn-secondary" onclick="closeCertModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="theme/theme.js"></script>
+    <script>
+        // Prevent zoom via keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent zoom via mouse wheel
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent pinch-to-zoom on touch devices
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+        let currentCategory = 'all';
+
+        // Load navbar
+        fetch('theme/navbar.html').then(r => r.text()).then(html => {
+            document.getElementById('navbar-root').innerHTML = html;
+            const container = document.querySelector('.certificates-container');
+            if (container) container.style.marginTop = '96px';
+        });
+
+        // Filter by category
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const sectionId = category === 'all' ? 'section-all' : `section-${category}`;
+            document.getElementById(sectionId).classList.add('active');
+
+            // Populate 'All' section with certificates from all categories
+            if (category === 'all') {
+                populateAllSection();
+            }
+        }
+
+        // Populate 'All' section with all certificates
+        function populateAllSection() {
+            const gridAll = document.getElementById('gridAll');
+            if (!gridAll) {
+                console.log('gridAll not found');
+                return;
+            }
+            
+            gridAll.innerHTML = '';
+
+            // Collect all certificates from all sections and clone them
+            const allCerts = document.querySelectorAll('[data-category]');
+            console.log('Found certificates:', allCerts.length);
+            
+            if (allCerts.length === 0) {
+                gridAll.innerHTML = '<div class="no-certificates">No certificates found</div>';
+                return;
+            }
+            
+            allCerts.forEach(cert => {
+                // Clone the certificate card
+                const clone = cert.cloneNode(true);
+                // Re-attach event listeners to cloned buttons
+                const viewBtn = clone.querySelector('.cert-view-btn');
+                const downloadBtn = clone.querySelector('.cert-share-btn');
+                if (viewBtn) {
+                    viewBtn.onclick = function() { openCertModal(this); };
+                }
+                if (downloadBtn) {
+                    downloadBtn.onclick = function() { downloadCertificateFromCard(this); };
+                }
+                gridAll.appendChild(clone);
+            });
+        }
+
+        // Search functionality
+        document.getElementById('certificateSearch').addEventListener('keyup', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const activeSection = document.querySelector('.category-section.active');
+            const cards = activeSection.querySelectorAll('.certificate-card');
+            
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const title = card.querySelector('.certificate-title')?.textContent.toLowerCase() || '';
+                const org = card.querySelector('.certificate-org')?.textContent.toLowerCase() || '';
+                const desc = card.querySelector('.certificate-description')?.textContent.toLowerCase() || '';
+                
+                if (title.includes(searchTerm) || org.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show no results message if needed
+            if (visibleCount === 0 && searchTerm !== '') {
+                const grid = activeSection.querySelector('.certificates-grid');
+                if (!grid.querySelector('.no-certificates')) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-certificates';
+                    noResults.textContent = 'No certificates found matching your search.';
+                    grid.appendChild(noResults);
+                }
+            } else {
+                const noResults = activeSection.querySelector('.no-certificates');
+                if (noResults) noResults.remove();
+            }
+        });
+
+        // Theme toggle functionality
+        function handleLogout() {
+            window.location.href = "Authentication/login.html";
+        }
+
+        // Initialize 'All' section on load
+        // Initialize page
+        function initializeCertificates() {
+            setTimeout(() => {
+                populateAllSection();
+            }, 100);
+        }
+
+        // Call on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCertificates);
+        } else {
+            initializeCertificates();
+        }
+
+        // Also call on window load
+        window.addEventListener('load', function() {
+            populateAllSection();
+        });
+
+        // Open Certificate Modal
+        function openCertModal(element) {
+            const card = element.closest('.certificate-card');
+            const title = card.dataset.title;
+            const org = card.dataset.org;
+            const date = card.dataset.date;
+            const duration = card.dataset.duration;
+            const score = card.dataset.score;
+            const code = card.dataset.code;
+            const image = card.dataset.image || '';
+            const recipient = card.dataset.recipient || 'Certificate Holder';
+
+            // Build modal content with certificate image prominently displayed
+            let modalHTML = `
+                ${image ? `<img src="${image}" alt="${title}" class="cert-modal-image">` : ''}
+                
+                <div class="cert-detail-group">
+                    <div class="cert-detail-label">📋 Recipient</div>
+                    <div class="cert-detail-value">${recipient}</div>
+                </div>
+
+                <div class="cert-detail-group">
+                    <div class="cert-detail-label">🎓 Course</div>
+                    <div class="cert-detail-value">${title}</div>
+                </div>
+
+                <div class="cert-detail-group">
+                    <div class="cert-detail-label">⏱️ Duration</div>
+                    <div class="cert-detail-value">${duration}</div>
+                </div>
+
+                <div class="cert-detail-group">
+                    <div class="cert-detail-label">🏢 Issued By</div>
+                    <div class="cert-detail-value">${org}</div>
+                </div>
+
+                <div class="cert-verification-code">
+                    <div class="cert-verification-code-label">🔐 Verification Code</div>
+                    <div class="cert-verification-code-text">${code}</div>
+                    <div style="font-size: 0.8em; color: #999; margin-top: 5px;">Use this code to verify certificate authenticity</div>
+                </div>
+            `;
+
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').innerHTML = modalHTML;
+            document.getElementById('certModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Certificate Modal
+        function closeCertModal() {
+            document.getElementById('certModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Download Certificate from card
+        function downloadCertificateFromCard(element) {
+            const card = element.closest('.certificate-card');
+            const title = card.dataset.title;
+            const pdfPath = card.dataset.pdf;
+            
+            // If PDF path exists, download the actual PDF file
+            if (pdfPath) {
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                link.download = `${title.replace(/\s+/g, '_')}_Certificate.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                return;
+            }
+            
+            // Fallback: generate PDF from card data
+            const org = card.dataset.org;
+            const code = card.dataset.code;
+            const recipient = card.dataset.recipient || 'Certificate Holder';
+            const image = card.dataset.image || '';
+            
+            // Create certificate content
+            const certContent = document.createElement('div');
+            certContent.style.padding = '30px';
+            certContent.style.backgroundColor = '#ffffff';
+            certContent.style.fontFamily = 'Arial, sans-serif';
+            
+            let html = '<div style="text-align: center;">';
+            
+            if (image) {
+                html += `<img src="${image}" style="max-width: 100%; height: auto; margin-bottom: 20px;" alt="Certificate">`;
+            }
+            
+            html += `
+                <div style="margin: 20px 0; text-align: left;">
+                    <p><strong>RECIPIENT:</strong><br>${recipient}</p>
+                    <p><strong>COURSE:</strong><br>${title}</p>
+                    <p><strong>ISSUED BY:</strong><br>${org}</p>
+                    <p><strong>VERIFICATION CODE:</strong><br>${code}</p>
+                </div>
+            </div>`;
+            
+            certContent.innerHTML = html;
+            
+            const opt = {
+                margin: 10,
+                filename: `${title.replace(/\s+/g, '_')}_Certificate.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            
+            html2pdf().set(opt).from(certContent).save();
+        }
+
+        // Download Certificate
+        function downloadCertificate() {
+            const title = document.getElementById('modalTitle').textContent;
+            
+            // Check if there's a modal showing a certificate card
+            const cards = document.querySelectorAll('.certificate-card');
+            let pdfPath = null;
+            
+            cards.forEach(card => {
+                if (card.dataset.title === title && card.dataset.pdf) {
+                    pdfPath = card.dataset.pdf;
+                }
+            });
+            
+            // If PDF path exists, download the actual PDF file
+            if (pdfPath) {
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                link.download = `${title.replace(/\s+/g, '_')}_Certificate.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                return;
+            }
+            
+            // Fallback: generate PDF from modal content
+            const modal = document.getElementById('certModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Create a container for the PDF content
+            const pdfContent = document.createElement('div');
+            pdfContent.style.padding = '20px';
+            pdfContent.style.backgroundColor = '#ffffff';
+            pdfContent.innerHTML = modalBody.innerHTML;
+            
+            // PDF options
+            const opt = {
+                margin: 10,
+                filename: `${title.replace(/\s+/g, '_')}_Certificate.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            
+            // Generate and download PDF
+            html2pdf().set(opt).from(pdfContent).save();
+        }
+
+        // Share Certificate
+        function shareCertificate() {
+            const title = document.getElementById('modalTitle').textContent;
+            const url = window.location.href;
+            const shareText = `Check out my ${title} certificate! Earned from my portfolio.`;
+            
+            // Try using Web Share API if available
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: shareText,
+                    url: url
+                }).catch(err => {
+                    console.log('Share failed:', err);
+                    // Fallback to copy to clipboard
+                    copyShareLink(shareText);
+                });
+            } else {
+                // Fallback to copy to clipboard
+                copyShareLink(shareText);
+            }
+        }
+
+        // Copy share link to clipboard
+        function copyShareLink(text) {
+            const url = window.location.href;
+            const shareMessage = `${text}\n${url}`;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareMessage).then(() => {
+                // Show success message
+                alert('Certificate share link copied to clipboard!');
+            }).catch(err => {
+                // Fallback if clipboard API fails
+                const textArea = document.createElement('textarea');
+                textArea.value = shareMessage;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Certificate share link copied to clipboard!');
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('certModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCertModal();
+            }
+        });
+        
+        fetch('theme/copyright.html').then(r => r.text()).then(html => {
+            document.getElementById('copyright-root').innerHTML = html;
+        });
+    </script>
+    <div id="copyright-root"></div>
+</body>
+</html>
