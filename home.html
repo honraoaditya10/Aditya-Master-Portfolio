@@ -297,7 +297,7 @@
         </div>
 
         <div class="social-links">
-            <a href="https://github.com/honraoaditya10-wq" class="social-icon" title="GitHub" target="_blank"><img
+            <a href="https://github.com/honraoaditya10" class="social-icon" title="GitHub" target="_blank"><img
                     src="images/social/github.png" alt="Github" style="width: 40px; height: 40px;"></a>
             <a href="https://www.linkedin.com/in/adityahonrao10/" class="social-icon" title="LinkedIn"
                 target="_blank"><img src="images/social/liknkdin.png" alt="LinkedIn"
@@ -319,8 +319,7 @@
         </div>
 
         <div style="margin-top: 20px;">
-            <a href="https://github.com/honraoaditya10-wq" class="github-btn" target="_blank">⭐ Star My Projects On
-                Github</a>
+            <a href="https://github.com/honraoaditya10-wq/Aditya-Master-Portfulio" class="github-btn" target="_blank">⭐ Star me On Github</a>
         </div>
     </div>
     <div id="navbar-root"></div>
@@ -370,6 +369,12 @@
                 const container = document.querySelector('.home-container');
                 if (container) container.style.marginTop = '96px';
             });
+
+            // Load navbar functionality
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'theme/navbar.js';
+            document.body.appendChild(script);
 
             function TypeWriter(element, words, period) {
                 this.words = words;

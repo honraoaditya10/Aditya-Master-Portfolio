@@ -579,7 +579,7 @@
                         <span class="tech-tag">Google Contact API</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/honraoaditya10-wq/Waste-Not-Diploma-Final-Year-Project.git" target="_blank" class="project-btn">
+                        <a href="https://github.com/honraoaditya10/Waste-Not-Diploma-Final-Year-Project.git" target="_blank" class="project-btn">
                             <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
                         </a>
                         <a href="#" class="project-btn" onclick="openProjectModal(3); return false;">
@@ -640,7 +640,7 @@ OmniGuard Pro is a web-based advanced security system designed to monitor, detec
                         <span class="tech-tag">Python</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/honraoaditya10-wq/shouldering-surffing.git" target="_blank" class="project-btn">
+                        <a href="https://github.com/honraoaditya10/shouldering-surffing.git" target="_blank" class="project-btn">
                             <img src="images/social/github.png" alt="GitHub" style="width: 24px; height: 24px;"> GitHub
                         </a>
                         <a href="https://shouldering-surffing.vercel.app/" class="project-btn" target="_blank">
@@ -840,6 +840,12 @@ OmniGuard Pro is a web-based advanced security system designed to monitor, detec
         fetch('theme/navbar.html').then(r => r.text()).then(html => {
             document.getElementById('navbar-root').innerHTML = html;
         });
+        
+        // Load navbar functionality
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'theme/navbar.js';
+        document.body.appendChild(script);
         
         fetch('theme/copyright.html').then(r => r.text()).then(html => {
             document.getElementById('copyright-root').innerHTML = html;

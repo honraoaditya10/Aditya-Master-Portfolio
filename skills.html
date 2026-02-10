@@ -675,6 +675,12 @@
             if (container) container.style.marginTop = '96px';
         });
         
+        // Load navbar functionality
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'theme/navbar.js';
+        document.body.appendChild(script);
+        
         fetch('theme/copyright.html').then(r => r.text()).then(html => {
             document.getElementById('copyright-root').innerHTML = html;
         });

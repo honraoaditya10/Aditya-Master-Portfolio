@@ -129,3 +129,52 @@ body.light-theme .signup-link a,
 body.light-theme .login-link a {
     color: #0f172a;
 }
+/* Login/Logout Buttons in Navbar */
+.login-btn-navbar,
+.logout-btn-navbar {
+    padding: 8px 16px;
+    background: transparent;
+    color: #64ffda;
+    border: 2px solid #64ffda;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+}
+
+.login-btn-navbar:hover,
+.logout-btn-navbar:hover {
+    background: rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+    transform: translateY(-2px);
+}
+
+.login-btn-navbar:active,
+.logout-btn-navbar:active {
+    transform: translateY(0);
+}
+
+body.light-theme .login-btn-navbar,
+body.light-theme .logout-btn-navbar {
+    color: #0f172a;
+    border-color: #0f172a;
+    box-shadow: 0 0 10px rgba(15, 23, 42, 0.2);
+}
+
+body.light-theme .login-btn-navbar:hover,
+body.light-theme .logout-btn-navbar:hover {
+    background: rgba(15, 23, 42, 0.1);
+    box-shadow: 0 0 20px rgba(15, 23, 42, 0.3);
+}
+
+@media (max-width: 768px) {
+    .login-btn-navbar,
+    .logout-btn-navbar {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

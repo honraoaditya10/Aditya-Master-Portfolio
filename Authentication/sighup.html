@@ -433,7 +433,7 @@ window.addEventListener('themeChanged', (e) => {
 
 } // Close initBackgroundAnimation function
     </script>
-    <div id="copyright-root"></div>
+    
     <script>
         // Prevent zoom via keyboard shortcuts
         document.addEventListener('keydown', function(e) {
@@ -462,9 +462,7 @@ window.addEventListener('themeChanged', (e) => {
             e.preventDefault();
         });
 
-        fetch('../theme/copyright.html').then(r => r.text()).then(html => {
-            document.getElementById('copyright-root').innerHTML = html;
-        });
+   
     </script>
 </body>
 </html>

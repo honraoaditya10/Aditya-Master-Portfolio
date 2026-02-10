@@ -858,7 +858,7 @@
                     data-org="AWS"
                     data-date="june 2025 - july 2025"
                     data-duration="june 2025 - july 2025"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/Aws_cloud_practtitioner.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/AWS cloud.pdf">
@@ -887,7 +887,7 @@
                     data-org="Code with Harry"
                     data-date="november 2025 - january 2026"
                     data-duration="november 2025 - january 2026"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/python_codewith_harry.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/python_code_with_harry.pdf">
@@ -916,7 +916,7 @@
                     data-org="HackerRank"
                     data-date="january 2026"
                     data-duration="january 2026"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/java_Basic.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/java_basic certificate.pdf">
@@ -946,7 +946,7 @@
                     data-org="Code with Harry"
                     data-date="september 2025 - february 2026"
                     data-duration="september 2025 - february 2026"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/data_science.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/Data Science.pdf">
@@ -976,7 +976,7 @@
                     data-org="IIT Bombay"
                     data-date="December 2024 - March 2025"
                     data-duration="December 2024 - March 2025"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/Python_training_cetificate.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/Python Programming Training Certificate.pdf">
@@ -1006,7 +1006,7 @@
                     data-org="Great Learning"
                     data-date="february 2024 - March 2024"
                     data-duration="february 2024 - March 2024"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/html.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/html.pdf">
@@ -1037,7 +1037,7 @@
                     data-org="Great Learning"
                     data-date="march 2024 - april 2024"
                     data-duration="march 2024 - april 2024"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/css.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/css.pdf">
@@ -1159,13 +1159,43 @@ Gained knowledge of CSS styling, selectors, box model, and responsive design tec
 
 
                 <!-- Hackathon certificates -->
+
+
+                 <div class="certificate-card" data-category="hackathon" 
+                    data-title="JSPM Hackthon 2026"
+                    data-org="JSPM College Tathvde"
+                    data-date="2 jan"
+                    data-duration="2 jan"
+                  
+                    data-image="images/certificates/Hackthon/jspm.png"
+                    data-recipient="Aditya Honrao"
+                    data-pdf="images/certificates/pdf/jspm.pdf">
+                    <div class="certificate-image">
+                        <img src="images/certificates/Hackthon/jspm.png" alt="JSPM Hackathon">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">JSPM Hackathon 2026</h3>
+                        <p class="certificate-org">JSPM College Tathvde</p>
+                        <p class="certificate-date">Issued: 2 Jan</p>
+                        <p class="certificate-description">
+created a AI & ML project "Sarvasw" a platform to crete trained Chatbot,AI Agent,Multi-Agent and many more 20+ Features by giving just promt
+                            <div class="certificate-actions">
+                            <button class="cert-btn cert-view-btn" onclick="openCertModal(this)">
+                                📄 View
+                            </button>
+                            <button class="cert-btn cert-share-btn" onclick="downloadCertificateFromCard(this)">
+                                ⬇️ Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
               
                    <div class="certificate-card" data-category="hackathon" 
                     data-title="MIT Hackathon 2025"
                     data-org="MIT college Alandi"
                     data-date="24 & 25 Aug"
                     data-duration="24 & 25 Aug"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/Hackthon/MIT.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/MIT Hackthon.pdf">
@@ -1205,7 +1235,7 @@ Gained knowledge of CSS styling, selectors, box model, and responsive design tec
                     data-org="Google"
                     data-date="5 january 2026"
                     data-duration="5 to 5 january 2029"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/Extra Curricular/Google AI Student.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/Google AI Student.pdf">
@@ -1235,7 +1265,7 @@ Gained knowledge of CSS styling, selectors, box model, and responsive design tec
                     data-org="COEP"
                     data-date="27 - 29 Octomber 2023"
                     data-duration="27 - 29 Octomber 2023"
-                    data-code="AWS-2025-ACP001"
+                  
                     data-image="images/certificates/Extra Curricular/mindspark2023.png"
                     data-recipient="Aditya Honrao"
                     data-pdf="images/certificates/pdf/mindspark2023.pdf">
@@ -1327,6 +1357,12 @@ Gained knowledge of CSS styling, selectors, box model, and responsive design tec
             const container = document.querySelector('.certificates-container');
             if (container) container.style.marginTop = '96px';
         });
+        
+        // Load navbar functionality
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'theme/navbar.js';
+        document.body.appendChild(script);
 
         // Filter by category
         function filterCategory(category) {
@@ -1484,11 +1520,7 @@ Gained knowledge of CSS styling, selectors, box model, and responsive design tec
                     <div class="cert-detail-value">${org}</div>
                 </div>
 
-                <div class="cert-verification-code">
-                    <div class="cert-verification-code-label">🔐 Verification Code</div>
-                    <div class="cert-verification-code-text">${code}</div>
-                    <div style="font-size: 0.8em; color: #999; margin-top: 5px;">Use this code to verify certificate authenticity</div>
-                </div>
+          
             `;
 
             document.getElementById('modalTitle').textContent = title;

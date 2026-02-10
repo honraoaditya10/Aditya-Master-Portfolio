@@ -369,6 +369,12 @@
                 document.getElementById('navbar-root').innerHTML = html;
             });
 
+            // Load navbar functionality
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'theme/navbar.js';
+            document.body.appendChild(script);
+
             // Theme-aware video switching
             function updateVideoForTheme() {
                 const video = document.getElementById('education-video');
